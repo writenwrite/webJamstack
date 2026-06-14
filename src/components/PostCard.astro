@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  slug: string;
+  date: string;
+  image?: string;
+}
+
+const { title, excerpt, slug, date, image } = Astro.props;
+---
+
+<article class="card">
+  {image && (
+    <img
+      src={image}
+      alt={title}
+      class="w-full h-48 object-cover rounded-lg mb-4"
+    />
+  )}
+
+  <time class="text-sm text-gray-400">{date}</time>
+
+  <h3 class="text-xl font-bold mt-2 mb-3">
+    <a href={`/blog/${slug}`} class="hover:text-primary transition-colors">
+      {title}
+    </a>
+  </h3>
+
+  <p class="text-gray-400 mb-4">{excerpt}</p>
+
+  <a href={`/blog/${slug}`} class="text-primary hover:text-blue-400 font-medium transition-colors">
+    Baca selengkapnya &rarr;
+  </a>
+</article>

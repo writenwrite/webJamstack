@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const skills = [
+  { category: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'React', 'Astro'] },
+  { category: 'Backend', items: ['Node.js', 'Express', 'Python'] },
+  { category: 'Database', items: ['PostgreSQL', 'MongoDB', 'Sanity'] },
+  { category: 'Tools', items: ['Git', 'VS Code', 'Figma', 'Docker'] },
+];
+---
+
+<BaseLayout title="About - Portfolio & Blog">
+  <section class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8">Tentang Saya</h1>
+
+    <div class="prose prose-lg prose-invert">
+      <p class="text-gray-300 text-lg mb-6">
+        Halo! Saya adalah web developer yang berlokasi di Indonesia.
+        Saya memiliki passion dalam membuat website yang modern, cepat, dan
+        user-friendly.
+      </p>
+
+      <p class="text-gray-300 text-lg mb-6">
+        Dengan pengalaman dalam frontend dan backend development,
+        saya fokus pada pembuatan aplikasi web yang tidak hanya terlihat bagus
+        tetapi juga memiliki performa yang optimal.
+      </p>
+
+      <p class="text-gray-300 text-lg mb-12">
+        Saat ini saya tertarik dengan arsitektur Jamstack dan static site generation
+        untuk membangun website yang sangat cepat dan mudah di-deploy.
+      </p>
+    </div>
+
+    <!-- Skills -->
+    <h2 class="text-3xl font-bold mb-8">Skills & Teknologi</h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      {skills.map((skill) => (
+        <div class="card">
+          <h3 class="text-xl font-bold mb-4 text-primary">{skill.category}</h3>
+          <div class="flex flex-wrap gap-2">
+            {skill.items.map((item) => (
+              <span class="bg-gray-700 px-3 py-1 rounded-full text-gray-300">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Contact -->
+    <div class="card text-center">
+      <h2 class="text-2xl font-bold mb-4">Hubungi Saya</h2>
+      <p class="text-gray-400 mb-6">
+        Tertarik untuk bekerja sama atau sekadar ngobrol?
+      </p>
+      <a href="mailto:hello@example.com" class="btn-primary">
+        Kirim Email
+      </a>
+    </div>
+  </section>
+</BaseLayout>

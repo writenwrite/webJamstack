@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = [
+  {
+    title: 'Memulai Belajar Web Development',
+    excerpt: 'Panduan lengkap untuk pemula yang ingin belajar membuat website.',
+    slug: 'memulai-belajar-web-development',
+    date: '14 Juni 2026',
+  },
+  {
+    title: 'Astro: Framework Modern untuk SSG',
+    excerpt: 'Mengenal Astro dan mengapa framework ini cocok untuk portfolio.',
+    slug: 'astro-framework-modern',
+    date: '10 Juni 2026',
+  },
+  {
+    title: 'Deploy Website Gratis ke Vercel',
+    excerpt: 'Cara mudah deploy website Jamstack ke Vercel secara gratis.',
+    slug: 'deploy-vercel',
+    date: '5 Juni 2026',
+  },
+  {
+    title: 'Setup Sanity CMS untuk Blog',
+    excerpt: 'Panduan lengkap mengintegrasikan Sanity CMS dengan Astro.',
+    slug: 'setup-sanity-cms',
+    date: '1 Juni 2026',
+  },
+];
+---
+
+<BaseLayout title="Blog - Portfolio & Blog">
+  <section class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4 text-center">Blog</h1>
+    <p class="text-gray-400 text-center mb-12">
+      Artikel tentang web development, tips, dan tutorial.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {posts.map((post) => (
+        <PostCard {...post} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

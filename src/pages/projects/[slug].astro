@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'e-commerce-platform' } },
+    { params: { slug: 'task-management' } },
+    { params: { slug: 'blog-platform' } },
+    { params: { slug: 'weather-dashboard' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+// Sample projects data (in production, fetch from Sanity)
+const projects = {
+  'e-commerce-platform': {
+    title: 'E-Commerce Platform',
+    description: 'Platform e-commerce full-stack dengan payment gateway dan admin dashboard.',
+    techStack: ['Next.js', 'Sanity', 'Stripe', 'Tailwind CSS'],
+    features: [
+      'Product catalog dengan pencarian dan filter',
+      'Shopping cart dan checkout flow',
+      'Payment gateway dengan Stripe',
+      'Admin dashboard untuk manajemen produk',
+      'Responsive design untuk mobile',
+    ],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  'task-management': {
+    title: 'Task Management App',
+    description: 'Aplikasi manajemen tugas dengan fitur kolaborasi tim dan real-time updates.',
+    techStack: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
+    features: [
+      'Real-time collaboration dengan multiple users',
+      'Drag and drop task management',
+      'Due date dan priority settings',
+      'Notification system',
+      'Activity log dan audit trail',
+    ],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  'blog-platform': {
+    title: 'Blog Platform',
+    description: 'Platform blog sederhana dengan CMS dan fitur markdown support.',
+    techStack: ['Astro', 'Sanity', 'Tailwind CSS'],
+    features: [
+      'Markdown support untuk konten',
+      'Tags dan categories',
+      'Search functionality',
+      'RSS feed',
+      'SEO optimized',
+    ],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+  'weather-dashboard': {
+    title: 'Weather Dashboard',
+    description: 'Dashboard cuaca dengan visualisasi data dan prediksi 7 hari ke depan.',
+    techStack: ['Vue.js', 'OpenWeather API', 'Chart.js'],
+    features: [
+      'Current weather dengan lokasi GPS',
+      '7-day weather forecast',
+      'Interactive charts',
+      'Multiple location support',
+      'Weather alerts',
+    ],
+    liveUrl: 'https://example.com',
+    githubUrl: 'https://github.com',
+  },
+};
+
+const project = projects[slug];
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+---
+
+<BaseLayout title={`${project.title} - Projects`}>
+  <article class="max-w-3xl mx-auto">
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold">{project.title}</h1>
+      <p class="text-gray-400 mt-4 text-lg">{project.description}</p>
+    </header>
+
+    <!-- Tech Stack -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Tech Stack</h2>
+      <div class="flex flex-wrap gap-3">
+        {project.techStack.map((tech) => (
+          <span class="bg-primary/20 text-primary px-4 py-2 rounded-full font-medium">
+            {tech}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Fitur Utama</h2>
+      <ul class="space-y-3">
+        {project.features.map((feature) => (
+          <li class="flex items-start text-gray-300">
+            <span class="text-secondary mr-2">&#10003;</span>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- Links -->
+    <section class="flex gap-4 mb-12">
+      <a
+        href={project.liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary"
+      >
+        Live Demo
+      </a>
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+      >
+        GitHub
+      </a>
+    </section>
+
+    <footer class="pt-8 border-t border-gray-700">
+      <a href="/projects" class="text-primary hover:text-blue-400 font-medium transition-colors">
+        &larr; Kembali ke Projects
+      </a>
+    </footer>
+  </article>
+</BaseLayout>

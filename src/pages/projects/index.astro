@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const projects = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'Platform e-commerce full-stack dengan payment gateway dan admin dashboard.',
+    slug: 'e-commerce-platform',
+    techStack: ['Next.js', 'Sanity', 'Stripe', 'Tailwind'],
+  },
+  {
+    title: 'Task Management App',
+    description: 'Aplikasi manajemen tugas dengan fitur kolaborasi tim dan real-time updates.',
+    slug: 'task-management',
+    techStack: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
+  },
+  {
+    title: 'Blog Platform',
+    description: 'Platform blog sederhana dengan CMS dan fitur markdown support.',
+    slug: 'blog-platform',
+    techStack: ['Astro', 'Sanity', 'Tailwind'],
+  },
+  {
+    title: 'Weather Dashboard',
+    description: 'Dashboard cuaca dengan visualisasi data dan prediksi 7 hari ke depan.',
+    slug: 'weather-dashboard',
+    techStack: ['Vue.js', 'OpenWeather API', 'Chart.js'],
+  },
+];
+---
+
+<BaseLayout title="Projects - Portfolio & Blog">
+  <section class="max-w-5xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4 text-center">Projects</h1>
+    <p class="text-gray-400 text-center mb-12">
+      Kumpulan proyek yang telah saya kerjakan.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

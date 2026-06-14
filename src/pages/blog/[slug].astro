@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'memulai-belajar-web-development' } },
+    { params: { slug: 'astro-framework-modern' } },
+    { params: { slug: 'deploy-vercel' } },
+    { params: { slug: 'setup-sanity-cms' } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+// Sample blog posts data (in production, fetch from Sanity)
+const posts = {
+  'memulai-belajar-web-development': {
+    title: 'Memulai Belajar Web Development',
+    date: '14 Juni 2026',
+    author: 'Developer',
+    content: `
+      <p>Web development adalah bidang yang terus berkembang dan menawarkan banyak peluang. Dalam artikel ini, kita akan membahas langkah-langkah untuk memulai perjalanan Anda sebagai web developer.</p>
+
+      <h2>1. Pelajari HTML & CSS</h2>
+      <p>HTML dan CSS adalah fondasi dari setiap website. HTML digunakan untuk membuat struktur konten, sedangkan CSS digunakan untuk styling tampilan.</p>
+
+      <h2>2. Kuasai JavaScript</h2>
+      <p>JavaScript adalah bahasa pemrograman yang membuat website menjadi interaktif. Dengan JavaScript, Anda bisa membuat fitur dinamis seperti form validation, animations, dan API calls.</p>
+
+      <h2>3. Pilih Framework</h2>
+      <p>Setelah menguasai dasar-dasar, pilihlah framework yang sesuai dengan kebutuhan Anda. Untuk portfolio, Astro adalah pilihan yang sangat baik karena menghasilkan website yang sangat cepat.</p>
+
+      <h2>4. Bangun Portfolio</h2>
+      <p>Selanjutnya, bangun portfolio untuk menampilkan proyek-proyek Anda. Portfolio yang baik akan membantu Anda mendapatkan klien atau pekerjaan.</p>
+    `,
+  },
+  'astro-framework-modern': {
+    title: 'Astro: Framework Modern untuk SSG',
+    date: '10 Juni 2026',
+    author: 'Developer',
+    content: `
+      <p>Astro adalah static site generator modern yang dirancang untuk performa. Berbeda dengan framework lain, Astro mengirim HTML tanpa JavaScript secara default.</p>
+
+      <h2>Mengapa Astro?</h2>
+      <p>Astro memiliki beberapa keunggulan:</p>
+      <ul>
+        <li>Zero JavaScript by default</li>
+        <li>Island Architecture untuk interaktivitas on-demand</li>
+        <li>Support multiple UI frameworks (React, Vue, Svelte)</li>
+        <li>Content collections untuk blog dan documentation</li>
+      </ul>
+
+      <h2>Setup Project Astro</h2>
+      <p>Memulai project Astro sangat mudah. Cukup jalankan perintah npm create astro@latest dan ikuti instruksinya.</p>
+
+      <h2>Kesimpulan</h2>
+      <p>Astro adalah pilihan yang tepat untuk website yang memprioritaskan performa. Cocok untuk portfolio, blog, dan documentation site.</p>
+    `,
+  },
+  'deploy-vercel': {
+    title: 'Deploy Website Gratis ke Vercel',
+    date: '5 Juni 2026',
+    author: 'Developer',
+    content: `
+      <p>Vercel adalah platform deployment yang sangat populer untuk website Jamstack. Mereka menawarkan free tier yang cukup untuk kebanyakan use case.</p>
+
+      <h2>Langkah Deploy</h2>
+      <ol>
+        <li>Push kode ke GitHub repository</li>
+        <li>Login ke Vercel dan connect repository</li>
+        <li>Set environment variables jika diperlukan</li>
+        <li>Klik Deploy dan tunggu proses selesai</li>
+      </ol>
+
+      <h2>Fitur Vercel</h2>
+      <p>Vercel menawarkan fitur lengkap seperti automatic deployments, preview deployments untuk pull requests, dan analytics.</p>
+    `,
+  },
+  'setup-sanity-cms': {
+    title: 'Setup Sanity CMS untuk Blog',
+    date: '1 Juni 2026',
+    author: 'Developer',
+    content: `
+      <p>Sanity adalah headless CMS yang powerful dan fleksibel. Dalam artikel ini, kita akan membahas cara mengintegrasikan Sanity dengan Astro.</p>
+
+      <h2>1. Buat Sanity Project</h2>
+      <p>Kunjungi sanity.io dan buat project baru. Pilih opsi Blank Studio untuk memulai dari awal.</p>
+
+      <h2>2. Definisikan Schema</h2>
+      <p>Buat schema untuk konten blog Anda. Schema ini akan menentukan struktur data yang akan disimpan di Sanity.</p>
+
+      <h2>3. Integrasikan dengan Astro</h2>
+      <p>Gunakan @astrojs/sanity package untuk mengintegrasikan Sanity dengan Astro. Configure project ID dan dataset di environment variables.</p>
+    `,
+  },
+};
+
+const post = posts[slug];
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<BaseLayout title={`${post.title} - Blog`}>
+  <article class="max-w-3xl mx-auto">
+    <header class="mb-8">
+      <time class="text-gray-400">{post.date}</time>
+      <h1 class="text-4xl font-bold mt-2">{post.title}</h1>
+      <p class="text-gray-400 mt-2">Oleh {post.author}</p>
+    </header>
+
+    <div class="prose prose-lg prose-invert" set:html={post.content} />
+
+    <footer class="mt-12 pt-8 border-t border-gray-700">
+      <a href="/blog" class="text-primary hover:text-blue-400 font-medium transition-colors">
+        &larr; Kembali ke Blog
+      </a>
+    </footer>
+  </article>
+</BaseLayout>
