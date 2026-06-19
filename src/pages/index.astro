@@ -6,13 +6,13 @@ import ProjectCard from '../components/ProjectCard.astro';
 const featuredPosts = [
   {
     title: 'Memulai Belajar Web Development',
-    excerpt: 'Panduan lengkap untuk pemula yang ingin belajar membuat website.',
+    excerpt: 'Panduan lengkap untuk pemula yang ingin belajar membuat website dari nol.',
     slug: 'memulai-belajar-web-development',
     date: '14 Juni 2026',
   },
   {
     title: 'Astro: Framework Modern untuk SSG',
-    excerpt: 'Mengenal Astro dan mengapa framework ini cocok untuk portfolio.',
+    excerpt: 'Mengenal Astro dan mengapa framework ini cocok untuk portfolio dan blog.',
     slug: 'astro-framework-modern',
     date: '10 Juni 2026',
   },
@@ -21,63 +21,159 @@ const featuredPosts = [
 const featuredProjects = [
   {
     title: 'E-Commerce Platform',
-    description: 'Platform e-commerce full-stack dengan payment gateway.',
+    description: 'Platform e-commerce full-stack dengan payment gateway dan admin dashboard.',
     slug: 'e-commerce-platform',
     techStack: ['Next.js', 'Sanity', 'Stripe'],
   },
   {
     title: 'Task Management App',
-    description: 'Aplikasi manajemen tugas dengan fitur kolaborasi tim.',
+    description: 'Aplikasi manajemen tugas dengan fitur kolaborasi tim real-time.',
     slug: 'task-management',
     techStack: ['React', 'Node.js', 'MongoDB'],
   },
+];
+
+const stats = [
+  { value: '2+', label: 'Tahun Pengalaman' },
+  { value: '10+', label: 'Proyek Selesai' },
+  { value: '5+', label: 'Teknologi' },
 ];
 ---
 
 <BaseLayout title="Home - Portfolio & Blog">
   <!-- Hero Section -->
-  <section class="text-center py-20">
-    <h1 class="text-5xl font-bold mb-6">
-      Halo, Saya <span class="text-primary">Developer</span>
-    </h1>
-    <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-      Web developer yang passionate dalam membuat website modern dan performa tinggi.
-    </p>
-    <div class="flex justify-center gap-4">
-      <a href="/projects" class="btn-primary">Lihat Proyek</a>
-      <a href="/about" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
-        Tentang Saya
-      </a>
+  <section class="relative min-h-[80vh] flex items-center py-20">
+    <!-- Decorative elements -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px] animate-float"></div>
+    <div class="absolute bottom-20 left-10 w-72 h-72 bg-secondary/10 rounded-full blur-[100px] animate-float-delayed"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 animate-slide-up">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <span class="text-sm text-gray-300">Tersedia untuk proyek baru</span>
+      </div>
+
+      <!-- Main heading -->
+      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-extrabold mb-6 animate-slide-up">
+        <span class="text-gray-100">Halo, Saya</span>
+        <br />
+        <span class="gradient-text">Web Developer</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up-delayed text-balance">
+        Saya membangun website modern yang <span class="text-white font-medium">cepat</span>,
+        <span class="text-white font-medium">indah</span>, dan <span class="text-white font-medium">berfokus pada pengguna</span>.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16 animate-slide-up-delayed">
+        <a href="/projects" class="btn-primary group">
+          <span>Lihat Proyek Saya</span>
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a href="/about" class="btn-secondary">
+          Tentang Saya
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-8 max-w-md mx-auto">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="text-3xl font-heading font-bold gradient-text mb-1">{stat.value}</div>
+            <div class="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
+  <!-- Tech Stack Marquee -->
+  <section class="py-12 overflow-hidden">
+    <div class="divider mb-12"></div>
+    <div class="flex gap-8 animate-[slide_20s_linear_infinite]">
+      {['Astro', 'React', 'Next.js', 'Tailwind CSS', 'Sanity', 'TypeScript', 'Node.js', 'Git'].map((tech) => (
+        <span class="text-2xl font-heading font-bold text-gray-700 whitespace-nowrap hover:text-primary/50 transition-colors cursor-default">
+          {tech}
+        </span>
+      ))}
+      {['Astro', 'React', 'Next.js', 'Tailwind CSS', 'Sanity', 'TypeScript', 'Node.js', 'Git'].map((tech) => (
+        <span class="text-2xl font-heading font-bold text-gray-700 whitespace-nowrap hover:text-primary/50 transition-colors cursor-default">
+          {tech}
+        </span>
+      ))}
+    </div>
+    <div class="divider mt-12"></div>
+  </section>
+
   <!-- Featured Projects -->
-  <section class="mb-16">
-    <h2 class="text-3xl font-bold mb-8 text-center">Proyek Unggulan</h2>
+  <section class="py-20">
+    <div class="text-center mb-12">
+      <span class="badge mb-4 inline-block">Proyek</span>
+      <h2 class="section-title">Proyek Unggulan</h2>
+      <p class="section-subtitle">
+        Beberapa proyek terbaik yang telah saya kerjakan.
+      </p>
+    </div>
     <div class="grid md:grid-cols-2 gap-6">
       {featuredProjects.map((project) => (
         <ProjectCard {...project} />
       ))}
     </div>
-    <div class="text-center mt-8">
-      <a href="/projects" class="text-primary hover:text-blue-400 font-medium transition-colors">
-        Lihat semua proyek &rarr;
+    <div class="text-center mt-10">
+      <a href="/projects" class="btn-secondary group">
+        <span>Lihat Semua Proyek</span>
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
       </a>
     </div>
   </section>
 
   <!-- Latest Posts -->
-  <section>
-    <h2 class="text-3xl font-bold mb-8 text-center">Artikel Terbaru</h2>
+  <section class="py-20">
+    <div class="text-center mb-12">
+      <span class="badge mb-4 inline-block">Blog</span>
+      <h2 class="section-title">Artikel Terbaru</h2>
+      <p class="section-subtitle">
+        Tulisan tentang web development, tips, dan tutorial.
+      </p>
+    </div>
     <div class="grid md:grid-cols-2 gap-6">
       {featuredPosts.map((post) => (
         <PostCard {...post} />
       ))}
     </div>
-    <div class="text-center mt-8">
-      <a href="/blog" class="text-primary hover:text-blue-400 font-medium transition-colors">
-        Baca semua artikel &rarr;
+    <div class="text-center mt-10">
+      <a href="/blog" class="btn-secondary group">
+        <span>Baca Semua Artikel</span>
+        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
       </a>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20">
+    <div class="glass-card text-center !p-12 relative overflow-hidden">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
+      <div class="relative z-10">
+        <h2 class="section-title mb-4">Mari Bekerja Sama</h2>
+        <p class="section-subtitle mb-8">
+          Punya proyek atau ide? Mari diskusikan!
+        </p>
+        <a href="/contact" class="btn-primary group">
+          <span>Hubungi Saya</span>
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

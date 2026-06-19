@@ -10,34 +10,48 @@ interface Props {
 const { title, description, slug, image, techStack = [] } = Astro.props;
 ---
 
-<article class="card">
+<article class="glass-card group">
   {image && (
-    <img
-      src={image}
-      alt={title}
-      class="w-full h-48 object-cover rounded-lg mb-4"
-    />
+    <div class="relative overflow-hidden rounded-xl mb-4">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent"></div>
+    </div>
   )}
 
-  <h3 class="text-xl font-bold mb-3">
-    <a href={`/projects/${slug}`} class="hover:text-primary transition-colors">
+  {!image && (
+    <div class="relative h-48 rounded-xl mb-4 overflow-hidden bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+      <svg class="w-16 h-16 text-accent/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    </div>
+  )}
+
+  <h3 class="text-xl font-heading font-bold mb-3 group-hover:text-secondary-light transition-colors">
+    <a href={`/projects/${slug}`}>
       {title}
     </a>
   </h3>
 
-  <p class="text-gray-400 mb-4">{description}</p>
+  <p class="text-gray-400 text-sm leading-relaxed mb-4">{description}</p>
 
   {techStack.length > 0 && (
-    <div class="flex flex-wrap gap-2 mb-4">
+    <div class="flex flex-wrap gap-2 mb-5">
       {techStack.map((tech) => (
-        <span class="bg-gray-700 text-sm px-3 py-1 rounded-full text-gray-300">
+        <span class="badge text-xs">
           {tech}
         </span>
       ))}
     </div>
   )}
 
-  <a href={`/projects/${slug}`} class="text-primary hover:text-blue-400 font-medium transition-colors">
-    Lihat proyek &rarr;
+  <a href={`/projects/${slug}`} class="inline-flex items-center gap-2 text-secondary-light hover:text-secondary font-medium text-sm group/link">
+    Lihat proyek
+    <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
   </a>
 </article>

@@ -5,31 +5,48 @@ interface Props {
   slug: string;
   date: string;
   image?: string;
+  tags?: string[];
 }
 
-const { title, excerpt, slug, date, image } = Astro.props;
+const { title, excerpt, slug, date, image, tags = [] } = Astro.props;
 ---
 
-<article class="card">
+<article class="glass-card group">
   {image && (
-    <img
-      src={image}
-      alt={title}
-      class="w-full h-48 object-cover rounded-lg mb-4"
-    />
+    <div class="relative overflow-hidden rounded-xl mb-4">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent"></div>
+    </div>
   )}
 
-  <time class="text-sm text-gray-400">{date}</time>
+  {!image && (
+    <div class="relative h-48 rounded-xl mb-4 overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+      <svg class="w-16 h-16 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+      </svg>
+    </div>
+  )}
 
-  <h3 class="text-xl font-bold mt-2 mb-3">
-    <a href={`/blog/${slug}`} class="hover:text-primary transition-colors">
+  <div class="flex items-center gap-2 mb-3">
+    <time class="badge text-xs">{date}</time>
+  </div>
+
+  <h3 class="text-xl font-heading font-bold mb-3 group-hover:text-primary-light transition-colors">
+    <a href={`/blog/${slug}`}>
       {title}
     </a>
   </h3>
 
-  <p class="text-gray-400 mb-4">{excerpt}</p>
+  <p class="text-gray-400 text-sm leading-relaxed mb-4">{excerpt}</p>
 
-  <a href={`/blog/${slug}`} class="text-primary hover:text-blue-400 font-medium transition-colors">
-    Baca selengkapnya &rarr;
+  <a href={`/blog/${slug}`} class="inline-flex items-center gap-2 text-primary-light hover:text-primary font-medium text-sm group/link">
+    Baca selengkapnya
+    <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+    </svg>
   </a>
 </article>

@@ -2,63 +2,123 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const skills = [
-  { category: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'React', 'Astro'] },
-  { category: 'Backend', items: ['Node.js', 'Express', 'Python'] },
-  { category: 'Database', items: ['PostgreSQL', 'MongoDB', 'Sanity'] },
-  { category: 'Tools', items: ['Git', 'VS Code', 'Figma', 'Docker'] },
+  { category: 'Frontend', icon: '🎨', items: ['HTML', 'CSS', 'JavaScript', 'React', 'Astro', 'Tailwind'] },
+  { category: 'Backend', icon: '⚙️', items: ['Node.js', 'Express', 'Python', 'REST API'] },
+  { category: 'Database', icon: '🗄️', items: ['PostgreSQL', 'MongoDB', 'Sanity'] },
+  { category: 'Tools', icon: '🛠️', items: ['Git', 'VS Code', 'Figma', 'Docker'] },
+];
+
+const timeline = [
+  { year: '2024', title: 'Mulai Belajar Web Development', desc: 'Fokus pada HTML, CSS, dan JavaScript' },
+  { year: '2025', title: 'Framework Modern', desc: 'Menguasai React, Astro, dan Tailwind CSS' },
+  { year: '2026', title: 'Full-Stack Developer', desc: 'Membangun proyek full-stack dengan Jamstack' },
 ];
 ---
 
 <BaseLayout title="About - Portfolio & Blog">
-  <section class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8">Tentang Saya</h1>
-
-    <div class="prose prose-lg prose-invert">
-      <p class="text-gray-300 text-lg mb-6">
-        Halo! Saya adalah web developer yang berlokasi di Indonesia.
-        Saya memiliki passion dalam membuat website yang modern, cepat, dan
-        user-friendly.
+  <!-- Hero -->
+  <section class="relative py-20 text-center">
+    <div class="absolute top-10 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <span class="badge mb-6 inline-block">Tentang Saya</span>
+      <h1 class="text-5xl sm:text-6xl font-heading font-extrabold mb-6">
+        <span class="text-gray-100">Web Developer</span>
+        <br />
+        <span class="gradient-text">Indonesia</span>
+      </h1>
+      <p class="text-lg text-gray-400 leading-relaxed text-balance">
+        Halo! Saya adalah web developer yang passionate dalam membuat website modern,
+        cepat, dan user-friendly. Saya fokus pada arsitektur Jamstack untuk performa optimal.
       </p>
+    </div>
+  </section>
 
-      <p class="text-gray-300 text-lg mb-6">
-        Dengan pengalaman dalam frontend dan backend development,
-        saya fokus pada pembuatan aplikasi web yang tidak hanya terlihat bagus
-        tetapi juga memiliki performa yang optimal.
-      </p>
+  <div class="divider my-8"></div>
 
-      <p class="text-gray-300 text-lg mb-12">
-        Saat ini saya tertarik dengan arsitektur Jamstack dan static site generation
-        untuk membangun website yang sangat cepat dan mudah di-deploy.
+  <!-- About Content -->
+  <section class="py-16 max-w-5xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+      <!-- Bio -->
+      <div>
+        <h2 class="section-title mb-6">Cerita Saya</h2>
+        <div class="space-y-4 text-gray-400 leading-relaxed">
+          <p>
+            Saya mulai belajar web development pada tahun 2024 dan sejak saat itu
+            saya tidak pernah berhenti belajar. Setiap proyek adalah kesempatan untuk
+            tumbuh dan mengasah keterampilan.
+          </p>
+          <p>
+            Dengan pengalaman dalam frontend dan backend development, saya fokus
+            pada pembuatan aplikasi web yang tidak hanya terlihat bagus tetapi
+            juga memiliki performa yang optimal.
+          </p>
+          <p>
+            Saat ini saya tertarik dengan arsitektur Jamstack dan static site generation
+            untuk membangun website yang sangat cepat dan mudah di-deploy.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div>
+        <h2 class="section-title mb-6">Perjalanan</h2>
+        <div class="space-y-6">
+          {timeline.map((item) => (
+            <div class="glass-card !p-5 relative">
+              <div class="absolute top-5 left-0 w-1 h-[calc(100%-40px)] bg-gradient-to-b from-primary to-secondary rounded-full"></div>
+              <div class="pl-6">
+                <span class="badge text-xs mb-2 inline-block">{item.year}</span>
+                <h3 class="font-heading font-bold text-white mb-1">{item.title}</h3>
+                <p class="text-sm text-gray-400">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="py-16">
+    <div class="text-center mb-12">
+      <span class="badge mb-4 inline-block">Keahlian</span>
+      <h2 class="section-title">Skills & Teknologi</h2>
+      <p class="section-subtitle">
+        Teknologi yang saya kuasai untuk membangun web modern.
       </p>
     </div>
 
-    <!-- Skills -->
-    <h2 class="text-3xl font-bold mb-8">Skills & Teknologi</h2>
-
-    <div class="grid md:grid-cols-2 gap-6 mb-12">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
       {skills.map((skill) => (
-        <div class="card">
-          <h3 class="text-xl font-bold mb-4 text-primary">{skill.category}</h3>
-          <div class="flex flex-wrap gap-2">
+        <div class="glass-card text-center">
+          <div class="text-4xl mb-4">{skill.icon}</div>
+          <h3 class="font-heading font-bold text-lg mb-4 text-white">{skill.category}</h3>
+          <div class="flex flex-wrap justify-center gap-2">
             {skill.items.map((item) => (
-              <span class="bg-gray-700 px-3 py-1 rounded-full text-gray-300">
-                {item}
-              </span>
+              <span class="badge text-xs">{item}</span>
             ))}
           </div>
         </div>
       ))}
     </div>
+  </section>
 
-    <!-- Contact -->
-    <div class="card text-center">
-      <h2 class="text-2xl font-bold mb-4">Hubungi Saya</h2>
-      <p class="text-gray-400 mb-6">
-        Tertarik untuk bekerja sama atau sekadar ngobrol?
-      </p>
-      <a href="mailto:hello@example.com" class="btn-primary">
-        Kirim Email
-      </a>
+  <!-- CTA -->
+  <section class="py-16">
+    <div class="glass-card text-center !p-12 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-72 h-72 bg-secondary/10 rounded-full blur-[100px]"></div>
+      <div class="relative z-10">
+        <h2 class="section-title mb-4">Hubungi Saya</h2>
+        <p class="section-subtitle mb-8">
+          Tertarik untuk bekerja sama atau sekadar ngobrol?
+        </p>
+        <a href="mailto:hello@example.com" class="btn-primary group">
+          <span>Kirim Email</span>
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

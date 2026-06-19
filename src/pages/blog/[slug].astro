@@ -12,12 +12,12 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 
-// Sample blog posts data (in production, fetch from Sanity)
 const posts = {
   'memulai-belajar-web-development': {
     title: 'Memulai Belajar Web Development',
     date: '14 Juni 2026',
     author: 'Developer',
+    readTime: '5 min read',
     content: `
       <p>Web development adalah bidang yang terus berkembang dan menawarkan banyak peluang. Dalam artikel ini, kita akan membahas langkah-langkah untuk memulai perjalanan Anda sebagai web developer.</p>
 
@@ -38,6 +38,7 @@ const posts = {
     title: 'Astro: Framework Modern untuk SSG',
     date: '10 Juni 2026',
     author: 'Developer',
+    readTime: '4 min read',
     content: `
       <p>Astro adalah static site generator modern yang dirancang untuk performa. Berbeda dengan framework lain, Astro mengirim HTML tanpa JavaScript secara default.</p>
 
@@ -61,6 +62,7 @@ const posts = {
     title: 'Deploy Website Gratis ke Vercel',
     date: '5 Juni 2026',
     author: 'Developer',
+    readTime: '3 min read',
     content: `
       <p>Vercel adalah platform deployment yang sangat populer untuk website Jamstack. Mereka menawarkan free tier yang cukup untuk kebanyakan use case.</p>
 
@@ -80,6 +82,7 @@ const posts = {
     title: 'Setup Sanity CMS untuk Blog',
     date: '1 Juni 2026',
     author: 'Developer',
+    readTime: '6 min read',
     content: `
       <p>Sanity adalah headless CMS yang powerful dan fleksibel. Dalam artikel ini, kita akan membahas cara mengintegrasikan Sanity dengan Astro.</p>
 
@@ -103,19 +106,40 @@ if (!post) {
 ---
 
 <BaseLayout title={`${post.title} - Blog`}>
-  <article class="max-w-3xl mx-auto">
-    <header class="mb-8">
-      <time class="text-gray-400">{post.date}</time>
-      <h1 class="text-4xl font-bold mt-2">{post.title}</h1>
-      <p class="text-gray-400 mt-2">Oleh {post.author}</p>
-    </header>
+  <!-- Hero -->
+  <section class="relative py-20 text-center">
+    <div class="absolute top-10 left-1/3 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <div class="flex items-center justify-center gap-3 mb-6">
+        <time class="badge">{post.date}</time>
+        <span class="badge">{post.readTime}</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-heading font-extrabold mb-4">
+        {post.title}
+      </h1>
+      <p class="text-gray-400">Oleh {post.author}</p>
+    </div>
+  </section>
 
-    <div class="prose prose-lg prose-invert" set:html={post.content} />
+  <div class="divider my-8"></div>
 
-    <footer class="mt-12 pt-8 border-t border-gray-700">
-      <a href="/blog" class="text-primary hover:text-blue-400 font-medium transition-colors">
-        &larr; Kembali ke Blog
+  <!-- Content -->
+  <article class="py-16 max-w-3xl mx-auto">
+    <div class="glass-card !p-8 md:!p-12">
+      <div
+        class="prose prose-lg prose-invert prose-headings:font-heading prose-headings:text-white prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-p:text-gray-300 prose-p:leading-relaxed prose-li:text-gray-300 prose-strong:text-white prose-a:text-primary-light prose-a:no-underline hover:prose-a:underline"
+        set:html={post.content}
+      />
+    </div>
+
+    <!-- Back Link -->
+    <div class="mt-12">
+      <a href="/blog" class="inline-flex items-center gap-2 text-primary-light hover:text-primary font-medium transition-colors group">
+        <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+        </svg>
+        Kembali ke Blog
       </a>
-    </footer>
+    </div>
   </article>
 </BaseLayout>

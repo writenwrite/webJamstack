@@ -11,7 +11,7 @@ const projects = [
   },
   {
     title: 'Task Management App',
-    description: 'Aplikasi manajemen tugas dengan fitur kolaborasi tim dan real-time updates.',
+    description: 'Aplikasi manajemen tugas dengan fitur kolaborasi tim real-time.',
     slug: 'task-management',
     techStack: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
   },
@@ -31,12 +31,24 @@ const projects = [
 ---
 
 <BaseLayout title="Projects - Portfolio & Blog">
-  <section class="max-w-5xl mx-auto">
-    <h1 class="text-4xl font-bold mb-4 text-center">Projects</h1>
-    <p class="text-gray-400 text-center mb-12">
-      Kumpulan proyek yang telah saya kerjakan.
-    </p>
+  <!-- Hero -->
+  <section class="relative py-20 text-center">
+    <div class="absolute top-10 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px]"></div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <span class="badge mb-6 inline-block">Proyek</span>
+      <h1 class="text-5xl sm:text-6xl font-heading font-extrabold mb-6">
+        <span class="gradient-text">Proyek Saya</span>
+      </h1>
+      <p class="section-subtitle">
+        Kumpulan proyek yang telah saya kerjakan dan kembangkan.
+      </p>
+    </div>
+  </section>
 
+  <div class="divider my-8"></div>
+
+  <!-- Projects Grid -->
+  <section class="py-16 max-w-5xl mx-auto">
     <div class="grid md:grid-cols-2 gap-6">
       {projects.map((project) => (
         <ProjectCard {...project} />

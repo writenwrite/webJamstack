@@ -12,17 +12,28 @@ const { title, description = 'Portfolio & Blog - Web Developer' } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
   <body class="min-h-screen flex flex-col">
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+      <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary/20 rounded-full blur-[128px] animate-float"></div>
+      <div class="absolute top-1/2 -left-40 w-80 h-80 bg-secondary/20 rounded-full blur-[128px] animate-float-delayed"></div>
+      <div class="absolute -bottom-40 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[128px] animate-float"></div>
+    </div>
     <Header />
-    <main class="flex-grow container mx-auto px-4 py-8">
+    <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <slot />
     </main>
     <Footer />
