@@ -35,13 +35,13 @@ const { title, excerpt, slug, date, image, tags = [] } = Astro.props;
     <time class="badge text-xs">{date}</time>
   </div>
 
-  <h3 class="text-xl font-heading font-bold mb-3 group-hover:text-primary-light transition-colors dark:text-gray-100 text-gray-900">
+  <h3 class="text-xl font-heading font-bold mb-3 group-hover:text-primary-light transition-colors dark:text-white text-gray-900">
     <a href={`/blog/${slug}`}>
       {title}
     </a>
   </h3>
 
-  <p class="text-sm leading-relaxed mb-4 dark:text-gray-400 text-gray-600">{excerpt}</p>
+  <p class="text-sm leading-relaxed mb-4 dark:text-gray-200 text-gray-600">{excerpt}</p>
 
   <a href={`/blog/${slug}`} class="inline-flex items-center gap-2 text-primary-light hover:text-primary font-medium text-sm group/link">
     Baca selengkapnya
