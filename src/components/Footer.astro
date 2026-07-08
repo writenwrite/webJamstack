@@ -20,13 +20,13 @@ const socialLinks = [
           </div>
           <span class="text-xl font-heading font-bold gradient-text">Portfolio</span>
         </a>
-        <p class="text-gray-400 text-sm">
+        <p class="footer-text text-sm">
           Membuat web modern dengan performa tinggi.
         </p>
       </div>
 
       <div class="text-center">
-        <p class="text-gray-400 text-sm">
+        <p class="footer-text text-sm">
           &copy; {currentYear} Portfolio. Built with
           <span class="text-primary">Astro</span> &
           <span class="text-secondary">Sanity</span>.
@@ -39,7 +39,7 @@ const socialLinks = [
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 rounded-xl glass-card !p-0 flex items-center justify-center text-gray-400 hover:text-white !hover:transform-none group"
+            class="social-icon w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group"
             aria-label={social.name}
           >
             <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">

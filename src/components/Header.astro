@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -9,7 +11,7 @@ const navItems = [
 
 <header class="fixed top-0 left-0 right-0 z-50">
   <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-    <div class="glass rounded-2xl px-6 py-3 flex justify-between items-center">
+    <div class="glass-header rounded-2xl px-6 py-3 flex justify-between items-center">
       <a href="/" class="flex items-center gap-2 group">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
           P
@@ -22,7 +24,7 @@ const navItems = [
           <li>
             <a
               href={item.href}
-              class="relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-300"
+              class="nav-link relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300"
             >
               {item.label}
             </a>
@@ -32,6 +34,9 @@ const navItems = [
           <a href="/contact" class="btn-primary text-sm !px-5 !py-2">
             Contact
           </a>
+        </li>
+        <li class="ml-2">
+          <ThemeToggle />
         </li>
       </ul>
     </div>

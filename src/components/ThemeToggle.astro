@@ -1,0 +1,134 @@
+---
+// Theme Toggle Component - Light/Dark Mode
+---
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+  <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+  <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+</button>
+
+<style>
+  .theme-toggle {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+  }
+
+  .theme-toggle:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: scale(1.05);
+  }
+
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .sun-icon,
+  .moon-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    color: #fbbf24;
+  }
+
+  .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+    color: #818cf8;
+  }
+
+  /* Dark theme (default) */
+  .dark .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .dark .moon-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+
+  /* Light theme */
+  .light .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+  }
+
+  .light .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* Light theme button styles */
+  .light .theme-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .light .theme-toggle:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.3);
+  }
+</style>
+
+<script>
+  function initTheme() {
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    // Check for saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set initial theme
+    if (savedTheme) {
+      html.classList.add(savedTheme);
+    } else if (systemPrefersDark) {
+      html.classList.add('dark');
+    } else {
+      html.classList.add('light');
+    }
+
+    // Toggle theme
+    toggle?.addEventListener('click', () => {
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTheme);
+  } else {
+    initTheme();
+  }
+
+  document.addEventListener('astro:page-load', initTheme);
+</script>

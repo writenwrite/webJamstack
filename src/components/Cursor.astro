@@ -1,0 +1,210 @@
+---
+// Glowing Custom Cursor Component
+---
+
+<div id="cursor-outer" class="cursor-outer"></div>
+<div id="cursor-dot" class="cursor-dot"></div>
+
+<style is:global>
+  /* Hide default cursor on desktop */
+  @media (hover: hover) and (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
+
+  .cursor-outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid rgba(99, 102, 241, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                height 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.3s,
+                background 0.3s,
+                box-shadow 0.3s;
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3),
+                inset 0 0 10px rgba(99, 102, 241, 0.1);
+    background: rgba(99, 102, 241, 0.05);
+    mix-blend-mode: screen;
+  }
+
+  .cursor-outer.hover {
+    width: 60px;
+    height: 60px;
+    border-color: rgba(6, 182, 212, 0.7);
+    background: rgba(6, 182, 212, 0.1);
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.4),
+                0 0 80px rgba(6, 182, 212, 0.2),
+                inset 0 0 15px rgba(6, 182, 212, 0.15);
+  }
+
+  .cursor-outer.click {
+    width: 30px;
+    height: 30px;
+    border-color: rgba(244, 114, 182, 0.8);
+    background: rgba(244, 114, 182, 0.15);
+    box-shadow: 0 0 50px rgba(244, 114, 182, 0.5),
+                0 0 100px rgba(244, 114, 182, 0.3),
+                inset 0 0 20px rgba(244, 114, 182, 0.2);
+  }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100000;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.3s;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+  }
+
+  .cursor-dot.hover {
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #06b6d4, #22d3ee);
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.7);
+  }
+
+  .cursor-dot.click {
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, #f472b6, #ec4899);
+    box-shadow: 0 0 20px rgba(244, 114, 182, 0.8);
+  }
+
+  /* Hide cursor on mobile/touch devices */
+  @media (hover: none), (pointer: coarse) {
+    .cursor-outer,
+    .cursor-dot {
+      display: none !important;
+    }
+  }
+
+  /* Hide cursor when leaving window */
+  .cursor-hidden .cursor-outer,
+  .cursor-hidden .cursor-dot {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+</style>
+
+<script>
+  function initCursor() {
+    const outer = document.getElementById('cursor-outer');
+    const dot = document.getElementById('cursor-dot');
+    
+    if (!outer || !dot) return;
+    
+    // Check if touch device
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      outer.style.display = 'none';
+      dot.style.display = 'none';
+      return;
+    }
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let outerX = -100;
+    let outerY = -100;
+    let dotX = -100;
+    let dotY = -100;
+    let isHovering = false;
+    let isClicking = false;
+
+    // Mouse move
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      // Show cursor when mouse moves
+      document.body.classList.remove('cursor-hidden');
+    });
+
+    // Mouse down
+    document.addEventListener('mousedown', () => {
+      isClicking = true;
+      outer.classList.add('click');
+      dot.classList.add('click');
+    });
+
+    // Mouse up
+    document.addEventListener('mouseup', () => {
+      isClicking = false;
+      outer.classList.remove('click');
+      dot.classList.remove('click');
+    });
+
+    // Hover detection
+    const interactiveElements = 'a, button, .glass-card, .btn-primary, .btn-secondary, .badge, input, textarea, select';
+    
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.closest(interactiveElements)) {
+        isHovering = true;
+        outer.classList.add('hover');
+        dot.classList.add('hover');
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.closest(interactiveElements)) {
+        isHovering = false;
+        outer.classList.remove('hover');
+        dot.classList.remove('hover');
+      }
+    });
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+      document.body.classList.add('cursor-hidden');
+    });
+
+    document.addEventListener('mouseenter', () => {
+      document.body.classList.remove('cursor-hidden');
+    });
+
+    // Animation loop with smooth follow
+    function animate() {
+      // Smooth follow with lerp
+      const outerSpeed = 0.12;
+      const dotSpeed = 0.25;
+
+      outerX += (mouseX - outerX) * outerSpeed;
+      outerY += (mouseY - outerY) * outerSpeed;
+      
+      dotX += (mouseX - dotX) * dotSpeed;
+      dotY += (mouseY - dotY) * dotSpeed;
+
+      outer.style.left = `${outerX}px`;
+      outer.style.top = `${outerY}px`;
+      
+      dot.style.left = `${dotX}px`;
+      dot.style.top = `${dotY}px`;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCursor);
+  } else {
+    initCursor();
+  }
+
+  // Re-initialize on page navigation (Astro)
+  document.addEventListener('astro:page-load', initCursor);
+</script>

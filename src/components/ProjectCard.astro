@@ -18,7 +18,7 @@ const { title, description, slug, image, techStack = [] } = Astro.props;
         alt={title}
         class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-dark-900/80 to-transparent dark:from-dark-900/80 light:from-white/80"></div>
     </div>
   )}
 
@@ -30,13 +30,13 @@ const { title, description, slug, image, techStack = [] } = Astro.props;
     </div>
   )}
 
-  <h3 class="text-xl font-heading font-bold mb-3 group-hover:text-secondary-light transition-colors">
+  <h3 class="text-xl font-heading font-bold mb-3 group-hover:text-secondary-light transition-colors dark:text-gray-100 text-gray-900">
     <a href={`/projects/${slug}`}>
       {title}
     </a>
   </h3>
 
-  <p class="text-gray-400 text-sm leading-relaxed mb-4">{description}</p>
+  <p class="text-sm leading-relaxed mb-4 dark:text-gray-400 text-gray-600">{description}</p>
 
   {techStack.length > 0 && (
     <div class="flex flex-wrap gap-2 mb-5">

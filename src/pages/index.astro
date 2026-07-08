@@ -49,22 +49,22 @@ const stats = [
 
     <div class="relative z-10 max-w-5xl mx-auto text-center">
       <!-- Badge -->
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-8 animate-slide-up">
+      <div class="status-badge inline-flex items-center gap-2 rounded-full px-4 py-2 mb-8 animate-slide-up">
         <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-        <span class="text-sm text-gray-300">Tersedia untuk proyek baru</span>
+        <span class="text-sm">Tersedia untuk proyek baru</span>
       </div>
 
       <!-- Main heading -->
       <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-heading font-extrabold mb-6 animate-slide-up">
-        <span class="text-gray-100">Halo, Saya</span>
+        <span class="dark:text-gray-100 text-gray-900">Halo, Saya</span>
         <br />
         <span class="gradient-text">Web Developer</span>
       </h1>
 
       <!-- Subtitle -->
-      <p class="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up-delayed text-balance">
-        Saya membangun website modern yang <span class="text-white font-medium">cepat</span>,
-        <span class="text-white font-medium">indah</span>, dan <span class="text-white font-medium">berfokus pada pengguna</span>.
+      <p class="text-lg sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed animate-slide-up-delayed text-balance dark:text-gray-400 text-gray-600">
+        Saya membangun website modern yang <span class="dark:text-white text-gray-900 font-medium">cepat</span>,
+        <span class="dark:text-white text-gray-900 font-medium">indah</span>, dan <span class="dark:text-white text-gray-900 font-medium">berfokus pada pengguna</span>.
       </p>
 
       <!-- CTA Buttons -->
@@ -85,7 +85,7 @@ const stats = [
         {stats.map((stat) => (
           <div class="text-center">
             <div class="text-3xl font-heading font-bold gradient-text mb-1">{stat.value}</div>
-            <div class="text-xs text-gray-500 uppercase tracking-wider">{stat.label}</div>
+            <div class="text-xs uppercase tracking-wider stat-label">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -97,12 +97,12 @@ const stats = [
     <div class="divider mb-12"></div>
     <div class="flex gap-8 animate-[slide_20s_linear_infinite]">
       {['Astro', 'React', 'Next.js', 'Tailwind CSS', 'Sanity', 'TypeScript', 'Node.js', 'Git'].map((tech) => (
-        <span class="text-2xl font-heading font-bold text-gray-700 whitespace-nowrap hover:text-primary/50 transition-colors cursor-default">
+        <span class="text-2xl font-heading font-bold dark:text-gray-700 text-gray-300 whitespace-nowrap hover:text-primary/50 transition-colors cursor-default">
           {tech}
         </span>
       ))}
       {['Astro', 'React', 'Next.js', 'Tailwind CSS', 'Sanity', 'TypeScript', 'Node.js', 'Git'].map((tech) => (
-        <span class="text-2xl font-heading font-bold text-gray-700 whitespace-nowrap hover:text-primary/50 transition-colors cursor-default">
+        <span class="text-2xl font-heading font-bold dark:text-gray-700 text-gray-300 whitespace-nowrap hover:text-primary/50 transition-colors cursor-default">
           {tech}
         </span>
       ))}
