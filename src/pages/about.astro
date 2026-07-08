@@ -88,18 +88,20 @@ const timeline = [
       </p>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-      {skills.map((skill) => (
-        <div class="glass-card text-center">
-          <div class="text-4xl mb-4">{skill.icon}</div>
-          <h3 class="font-heading font-bold text-lg mb-4 text-white">{skill.category}</h3>
-          <div class="flex flex-wrap justify-center gap-2">
-            {skill.items.map((item) => (
-              <span class="badge text-xs">{item}</span>
-            ))}
+    <div class="skills-scroll-container">
+      <div class="skills-track">
+        {skills.map((skill) => (
+          <div class="glass-card text-center skill-card">
+            <div class="text-4xl mb-4">{skill.icon}</div>
+            <h3 class="font-heading font-bold text-lg mb-4 text-white">{skill.category}</h3>
+            <div class="flex flex-wrap justify-center gap-2">
+              {skill.items.map((item) => (
+                <span class="badge text-xs">{item}</span>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </section>
 

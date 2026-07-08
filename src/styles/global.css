@@ -4,8 +4,20 @@
 
 @layer base {
   :root {
-    --glass-bg: rgba(15, 23, 42, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    /* Black & Gold Dark Theme */
+    --gold-50: #fffbeb;
+    --gold-100: #fef3c7;
+    --gold-200: #fde68a;
+    --gold-300: #fcd34d;
+    --gold-400: #fbbf24;
+    --gold-500: #f59e0b;
+    --gold-600: #d97706;
+    --gold-700: #b45309;
+    --gold-800: #92400e;
+    --gold-900: #78350f;
+
+    --glass-bg: rgba(0, 0, 0, 0.6);
+    --glass-border: rgba(251, 191, 36, 0.08);
     --light-bg: #f8fafc;
     --light-surface: #ffffff;
     --light-text: #1e293b;
@@ -15,29 +27,29 @@
     --light-accent: #6366f1;
   }
 
-  * { scrollbar-width: thin; scrollbar-color: #6366f1 #1e293b; }
+  * { scrollbar-width: thin; scrollbar-color: #fbbf24 #0a0a0a; }
   *::-webkit-scrollbar { width: 8px; }
-  *::-webkit-scrollbar-track { background: #1e293b; }
+  *::-webkit-scrollbar-track { background: #0a0a0a; }
   *::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #6366f1, #06b6d4);
+    background: linear-gradient(180deg, #fbbf24, #f59e0b);
     border-radius: 4px;
   }
 
   html { scroll-behavior: smooth; }
 
   /* ============================================
-     DARK THEME
+     DARK THEME - Black & Gold
      ============================================ */
   .dark body {
     @apply antialiased;
-    background-color: #020617;
-    color: #f1f5f9;
+    background-color: #0a0a0a;
+    color: #f5f5f5;
     background-image:
-      radial-gradient(at 20% 20%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
-      radial-gradient(at 80% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+      radial-gradient(at 20% 20%, rgba(251, 191, 36, 0.04) 0%, transparent 50%),
+      radial-gradient(at 80% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
     background-attachment: fixed;
   }
-  .dark ::selection { background-color: rgba(99, 102, 241, 0.4); color: white; }
+  .dark ::selection { background-color: rgba(251, 191, 36, 0.3); color: #0a0a0a; }
 
   /* ============================================
      LIGHT THEME - Professional & Warm
@@ -57,23 +69,34 @@
 
 @layer components {
   /* ============================================
-     BUTTONS - DARK
+     BUTTONS - DARK (Black & Gold)
      ============================================ */
   .dark .btn-primary {
-    @apply relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white rounded-xl overflow-hidden transition-all duration-300;
-    background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    @apply relative inline-flex items-center justify-center px-8 py-3 font-semibold rounded-xl overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #0a0a0a;
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
   }
-  .dark .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5); }
+  .dark .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+  }
 
   .dark .btn-secondary {
-    @apply relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300;
-    background: rgba(255, 255, 255, 0.05);
+    @apply relative inline-flex items-center justify-center px-8 py-3 font-semibold rounded-xl border backdrop-blur-sm transition-all duration-300;
+    color: #fbbf24;
+    border-color: rgba(251, 191, 36, 0.2);
+    background: rgba(251, 191, 36, 0.05);
   }
-  .dark .btn-secondary:hover { @apply border-primary/50; background: rgba(99, 102, 241, 0.1); transform: translateY(-2px); }
+  .dark .btn-secondary:hover {
+    border-color: rgba(251, 191, 36, 0.4);
+    background: rgba(251, 191, 36, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.15);
+  }
 
   /* ============================================
-     BUTTONS - LIGHT (Professional)
+     BUTTONS - LIGHT
      ============================================ */
   .light .btn-primary {
     @apply relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white rounded-xl overflow-hidden transition-all duration-300;
@@ -93,28 +116,36 @@
     border-color: rgba(99, 102, 241, 0.4);
     background: rgba(99, 102, 241, 0.08);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
   }
 
   /* ============================================
-     GLASS - DARK
+     GLASS - DARK (Black & Gold)
      ============================================ */
-  .dark .glass { @apply backdrop-blur-xl; background: var(--glass-bg); border: 1px solid var(--glass-border); }
+  .dark .glass {
+    @apply backdrop-blur-xl;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(251, 191, 36, 0.08);
+  }
   .dark .glass-card {
     @apply relative p-6 rounded-2xl transition-all duration-500;
-    background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(20px);
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(251, 191, 36, 0.08);
+    backdrop-filter: blur(20px);
   }
   .dark .glass-card::before {
     content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(6, 182, 212, 0.3));
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.5s;
   }
   .dark .glass-card:hover::before { opacity: 1; }
-  .dark .glass-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+  .dark .glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(251, 191, 36, 0.05);
+  }
 
   /* ============================================
-     GLASS - LIGHT (Clean & Professional)
+     GLASS - LIGHT
      ============================================ */
   .light .glass {
     @apply backdrop-blur-xl;
@@ -142,9 +173,16 @@
   }
 
   /* ============================================
-     GRADIENT TEXT
+     GRADIENT TEXT - Dark (Gold)
      ============================================ */
-  .gradient-text {
+  .dark .gradient-text {
+    @apply font-heading font-bold;
+    background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 30%, #f59e0b 60%, #fcd34d 100%);
+    background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    animation: gradient 8s ease infinite;
+  }
+
+  .light .gradient-text {
     @apply font-heading font-bold;
     background: linear-gradient(135deg, #6366f1 0%, #06b6d4 40%, #f472b6 80%, #6366f1 100%);
     background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -152,35 +190,46 @@
   }
 
   .section-title { @apply text-3xl md:text-4xl font-heading font-bold mb-4; }
-  .dark .section-title { color: #f1f5f9; }
+  .dark .section-title { color: #f5f5f5; }
   .light .section-title { color: #1e293b; }
 
   .section-subtitle { @apply text-lg max-w-2xl mx-auto; }
-  .dark .section-subtitle { color: #94a3b8; }
+  .dark .section-subtitle { color: #a3a3a3; }
   .light .section-subtitle { color: #64748b; }
 
   /* ============================================
-     BADGE
+     BADGE - Dark (Gold)
      ============================================ */
   .badge { @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium; }
-  .dark .badge { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.2); }
+  .dark .badge {
+    background: rgba(251, 191, 36, 0.1);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.15);
+  }
   .light .badge {
     background: rgba(99, 102, 241, 0.08);
     color: #4f46e5;
     border: 1px solid rgba(99, 102, 241, 0.15);
   }
 
+  /* ============================================
+     DIVIDER - Dark (Gold)
+     ============================================ */
   .divider { @apply w-full h-px; }
-  .dark .divider { background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent); }
+  .dark .divider { background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.25), transparent); }
   .light .divider { background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), transparent); }
 
   /* ============================================
-     HEADER
+     HEADER - Dark (Black & Gold)
      ============================================ */
-  .dark .glass-header { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); backdrop-filter: blur(20px); }
-  .dark .nav-link { color: #cbd5e1; }
-  .dark .nav-link:hover { color: #ffffff; background: rgba(255, 255, 255, 0.05); }
-  .dark .logo-text { color: #f1f5f9; }
+  .dark .glass-header {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(251, 191, 36, 0.06);
+    backdrop-filter: blur(20px);
+  }
+  .dark .nav-link { color: #d4d4d4; }
+  .dark .nav-link:hover { color: #fbbf24; background: rgba(251, 191, 36, 0.05); }
+  .dark .logo-text { color: #f5f5f5; }
 
   .light .glass-header {
     background: rgba(255, 255, 255, 0.85);
@@ -193,18 +242,29 @@
   .light .logo-text { color: #1e293b; }
 
   /* ============================================
-     FOOTER
+     FOOTER - Dark (Gold)
      ============================================ */
-  .dark .footer-text { color: #64748b; }
-  .dark .footer-link { color: #64748b; }
-  .dark .footer-link:hover { color: #e2e8f0; }
+  .dark .footer-text { color: #737373; }
+  .dark .footer-link { color: #737373; }
+  .dark .footer-link:hover { color: #fbbf24; }
   .light .footer-text { color: #64748b; }
   .light .footer-link { color: #64748b; }
   .light .footer-link:hover { color: #4f46e5; }
 
   /* ============================================
-     SOCIAL ICONS
+     SOCIAL ICONS - Dark (Gold)
      ============================================ */
+  .dark .social-icon {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(251, 191, 36, 0.06);
+    color: #737373;
+  }
+  .dark .social-icon:hover {
+    background: rgba(251, 191, 36, 0.1);
+    border-color: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    box-shadow: 0 2px 10px rgba(251, 191, 36, 0.1);
+  }
   .light .social-icon {
     background: rgba(99, 102, 241, 0.04);
     border: 1px solid rgba(99, 102, 241, 0.08);
@@ -214,34 +274,38 @@
     background: rgba(99, 102, 241, 0.08);
     border-color: rgba(99, 102, 241, 0.2);
     color: #4f46e5;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
   }
-  .dark .social-icon { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.06); color: #94a3b8; }
-  .dark .social-icon:hover { background: rgba(99, 102, 241, 0.15); border-color: rgba(99, 102, 241, 0.3); color: #e2e8f0; }
 
   /* ============================================
-     STATUS BADGE
+     STATUS BADGE - Dark (Gold)
      ============================================ */
+  .dark .status-badge {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(251, 191, 36, 0.08);
+    color: #d4d4d4;
+    backdrop-filter: blur(10px);
+  }
   .light .status-badge {
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(99, 102, 241, 0.1);
     color: #475569;
     backdrop-filter: blur(10px);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
-  .dark .status-badge { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); color: #94a3b8; backdrop-filter: blur(10px); }
-
-  .light .stat-label { color: #94a3b8; }
-  .dark .stat-label { color: #64748b; }
-  .light .feature-text { color: #475569; }
-  .dark .feature-text { color: #cbd5e1; }
 
   /* ============================================
-     ORB COLORS
+     STAT LABEL - Dark (Gold)
      ============================================ */
-  .dark .orb-1 { background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, transparent 70%); }
-  .dark .orb-2 { background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, transparent 70%); }
-  .dark .orb-3 { background: radial-gradient(circle, rgba(244, 114, 182, 0.25) 0%, transparent 70%); }
+  .dark .stat-label { color: #737373; }
+  .light .stat-label { color: #94a3b8; }
+  .dark .feature-text { color: #d4d4d4; }
+  .light .feature-text { color: #475569; }
+
+  /* ============================================
+     ORB COLORS - Dark (Gold)
+     ============================================ */
+  .dark .orb-1 { background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%); }
+  .dark .orb-2 { background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%); }
+  .dark .orb-3 { background: radial-gradient(circle, rgba(252, 211, 77, 0.1) 0%, transparent 70%); }
   .light .orb-1 { background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%); }
   .light .orb-2 { background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%); }
   .light .orb-3 { background: radial-gradient(circle, rgba(244, 114, 182, 0.05) 0%, transparent 70%); }
@@ -250,13 +314,24 @@
   .light .particle { opacity: 0.35; }
 
   /* ============================================
+     ROCKET PARTICLES - Dark (Gold)
+     ============================================ */
+  .dark .rocket-sm { color: rgba(251, 191, 36, 0.4); }
+  .dark .rocket-md { color: rgba(245, 158, 11, 0.4); }
+  .dark .rocket-lg { color: rgba(252, 211, 77, 0.4); }
+  .light .rocket-sm { color: rgba(99, 102, 241, 0.3); }
+  .light .rocket-md { color: rgba(6, 182, 212, 0.25); }
+  .light .rocket-lg { color: rgba(244, 114, 182, 0.25); }
+
+  /* ============================================
      PROSE/BLOG CONTENT
      ============================================ */
   .light .prose-content h2 { color: #1e293b; }
   .light .prose-content p, .light .prose-content li { color: #475569; }
   .light .prose-content strong { color: #1e293b; }
-  .dark .prose-content h2 { color: #f1f5f9; }
-  .dark .prose-content p, .dark .prose-content li { color: #cbd5e1; }
+  .dark .prose-content h2 { color: #f5f5f5; }
+  .dark .prose-content p, .dark .prose-content li { color: #d4d4d4; }
+  .dark .prose-content strong { color: #fbbf24; }
 }
 
 @layer utilities {
@@ -264,11 +339,21 @@
 }
 
 /* ============================================
-   AURORA (Simplified)
+   AURORA (Simplified) - Gold tint in dark
    ============================================ */
 .aurora-container { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: -2; }
 
-.aurora {
+.dark .aurora {
+  position: absolute; width: 150%; height: 150%; top: -25%; left: -25%;
+  background: 
+    radial-gradient(ellipse at 30% 30%, rgba(251, 191, 36, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 70%, rgba(245, 158, 11, 0.04) 0%, transparent 50%);
+  background-size: 200% 200%;
+  animation: aurora 20s ease-in-out infinite;
+  filter: blur(60px); opacity: 0.7;
+}
+
+.light .aurora {
   position: absolute; width: 150%; height: 150%; top: -25%; left: -25%;
   background: 
     radial-gradient(ellipse at 30% 30%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
@@ -293,13 +378,6 @@
 .rocket-sm svg { width: 14px; height: 14px; }
 .rocket-md svg { width: 20px; height: 20px; }
 .rocket-lg svg { width: 28px; height: 28px; }
-
-.dark .rocket-sm { color: rgba(99, 102, 241, 0.5); }
-.dark .rocket-md { color: rgba(6, 182, 212, 0.5); }
-.dark .rocket-lg { color: rgba(244, 114, 182, 0.5); }
-.light .rocket-sm { color: rgba(99, 102, 241, 0.3); }
-.light .rocket-md { color: rgba(6, 182, 212, 0.25); }
-.light .rocket-lg { color: rgba(244, 114, 182, 0.25); }
 
 .particle:nth-child(1) { left: 8%; animation: rocketFly1 20s linear infinite; }
 .particle:nth-child(2) { left: 18%; animation: rocketFly2 24s linear infinite 3s; }
@@ -353,9 +431,55 @@
 @keyframes gradient { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
 /* ============================================
+   SKILLS HORIZONTAL SCROLL
+   ============================================ */
+.skills-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 1rem 0;
+}
+
+.skills-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.skills-track {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0 2rem;
+}
+
+.skill-card {
+  min-width: 280px;
+  max-width: 280px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .skills-track {
+    padding: 0 1rem;
+  }
+  .skill-card {
+    min-width: 240px;
+    max-width: 240px;
+  }
+}
+
+/* ============================================
    GRID OVERLAY
    ============================================ */
-.grid-overlay {
+.dark .grid-overlay {
+  position: fixed; inset: 0; pointer-events: none; z-index: -1;
+  background-image: 
+    linear-gradient(rgba(251, 191, 36, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(251, 191, 36, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.light .grid-overlay {
   position: fixed; inset: 0; pointer-events: none; z-index: -1;
   background-image: 
     linear-gradient(rgba(99, 102, 241, 0.02) 1px, transparent 1px),
