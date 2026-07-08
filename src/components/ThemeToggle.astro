@@ -43,51 +43,28 @@
     width: 20px;
     height: 20px;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    color: #fbbf24;
   }
 
-  .sun-icon {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
+  .sun-icon { color: #fbbf24; }
+  .moon-icon { color: #6366f1; }
 
-  .moon-icon {
-    opacity: 0;
-    transform: rotate(-90deg) scale(0.5);
-    color: #818cf8;
-  }
+  .sun-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+  .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
 
-  /* Dark theme (default) */
-  .dark .sun-icon {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
+  .dark .sun-icon { opacity: 1; transform: rotate(0deg) scale(1); }
+  .dark .moon-icon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
 
-  .dark .moon-icon {
-    opacity: 0;
-    transform: rotate(-90deg) scale(0.5);
-  }
+  .light .sun-icon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+  .light .moon-icon { opacity: 1; transform: rotate(0deg) scale(1); }
 
-  /* Light theme */
-  .light .sun-icon {
-    opacity: 0;
-    transform: rotate(90deg) scale(0.5);
-  }
-
-  .light .moon-icon {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
-
-  /* Light theme button styles */
   .light .theme-toggle {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(99, 102, 241, 0.04);
+    border-color: rgba(99, 102, 241, 0.12);
   }
 
   .light .theme-toggle:hover {
-    background: rgba(99, 102, 241, 0.1);
-    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(99, 102, 241, 0.25);
   }
 </style>
 
@@ -96,11 +73,9 @@
     const toggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
     
-    // Check for saved theme or system preference
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    // Set initial theme
     if (savedTheme) {
       html.classList.add(savedTheme);
     } else if (systemPrefersDark) {
@@ -109,7 +84,6 @@
       html.classList.add('light');
     }
 
-    // Toggle theme
     toggle?.addEventListener('click', () => {
       if (html.classList.contains('dark')) {
         html.classList.remove('dark');
@@ -123,7 +97,6 @@
     });
   }
 
-  // Initialize
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTheme);
   } else {
