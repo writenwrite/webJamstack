@@ -27,7 +27,6 @@ const { title, description = 'Portfolio & Blog - Web Developer' } = Astro.props;
     />
     <title>{title}</title>
     <script is:inline>
-      // Prevent flash of wrong theme
       const savedTheme = localStorage.getItem('theme');
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (savedTheme === 'light') {
@@ -40,12 +39,12 @@ const { title, description = 'Portfolio & Blog - Web Developer' } = Astro.props;
     </script>
   </head>
   <body class="min-h-screen flex flex-col">
-    <!-- Aurora Borealis Background -->
+    <!-- Aurora Background -->
     <div class="aurora-container">
       <div class="aurora"></div>
     </div>
 
-    <!-- Floating Particles / Stars -->
+    <!-- Particles (15 only) -->
     <div class="particles-container">
       <div class="particle"></div>
       <div class="particle"></div>
@@ -62,56 +61,17 @@ const { title, description = 'Portfolio & Blog - Web Developer' } = Astro.props;
       <div class="particle"></div>
       <div class="particle"></div>
       <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
     </div>
 
-    <!-- Enhanced Floating Orbs -->
+    <!-- Floating Orbs -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden -z-[5]">
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
       <div class="orb orb-3"></div>
-      <div class="orb orb-4"></div>
     </div>
 
-    <!-- Subtle Grid Overlay -->
+    <!-- Grid Overlay -->
     <div class="grid-overlay"></div>
-
-    <!-- Noise/Grain Texture Overlay -->
-    <div class="noise-overlay"></div>
 
     <!-- Main Content -->
     <Header />
